@@ -1,6 +1,5 @@
 package br.com.password.service.impl;
 
-import br.com.password.exception.PasswordException;
 import br.com.password.exception.PasswordValidatorException;
 import br.com.password.model.PasswordResponse;
 import br.com.password.model.request.PasswordRequest;
@@ -21,7 +20,6 @@ public class PasswordServiceImpl implements PasswordService {
     public PasswordServiceImpl(ValidatorService validatorService) {
         this.validatorService = validatorService;
     }
-
 
     @Override
     public Mono<PasswordResponse> validatorPassword(PasswordRequest request) {

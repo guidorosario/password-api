@@ -23,7 +23,7 @@ public class PasswordController {
 
     @PostMapping
     @RequestMapping("/v1/validate")
-    public Mono<PasswordResponse> validatePassword(@RequestBody @Valid PasswordRequest passwordRequest) {
+    public Mono<PasswordResponse> validatePassword(@RequestBody PasswordRequest passwordRequest) {
         return passwordService.validatorPassword(passwordRequest);
     }
 
