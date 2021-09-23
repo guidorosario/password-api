@@ -7,6 +7,8 @@ public interface ValidatorService {
 
     Mono<PasswordResponse> lenghtValidator(String password, PasswordResponse passwordResponse);
 
+    Mono<PasswordResponse> spaceBetweenValidator (String password, PasswordResponse passwordResponse);
+
 
 
 }

@@ -1,7 +1,10 @@
 package br.com.password.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.ArrayList;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class PasswordResponse {
 
     private Boolean checkedPassword;
@@ -25,6 +28,11 @@ public class PasswordResponse {
 
     public PasswordResponse(Boolean checkedPassword) {
         this.checkedPassword = checkedPassword;
+    }
+
+    public PasswordResponse checkResponse() {
+        this.setCheckedPassword(this.getErrorPassword().isEmpty());
+        return this;
     }
 
     @Override
