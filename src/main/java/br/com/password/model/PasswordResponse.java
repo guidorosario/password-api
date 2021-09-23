@@ -3,13 +3,14 @@ package br.com.password.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PasswordResponse {
 
     private Boolean checkedPassword;
 
-    private ArrayList<String> errorPassword = new ArrayList<>();
+    private List<String> errorPassword = new ArrayList<>();
 
     public Boolean getCheckedPassword() {
         return checkedPassword;
@@ -19,7 +20,7 @@ public class PasswordResponse {
         this.checkedPassword = checkedPassword;
     }
 
-    public ArrayList<String> getErrorPassword() {
+    public List<String> getErrorPassword() {
         return errorPassword;
     }
 
@@ -37,10 +38,9 @@ public class PasswordResponse {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("PasswordResponse {");
-        sb.append("checkedPassword=").append(checkedPassword);
-        sb.append(", errorPassword=").append(errorPassword);
-        sb.append('}');
-        return sb.toString();
+        return "PasswordResponse{" +
+                "checkedPassword=" + checkedPassword +
+                ", errorPassword=" + errorPassword +
+                '}';
     }
 }
