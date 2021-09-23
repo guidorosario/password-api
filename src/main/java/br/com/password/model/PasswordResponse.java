@@ -1,16 +1,16 @@
 package br.com.password.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.util.ArrayList;
-import java.util.List;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class PasswordResponse {
 
     private Boolean checkedPassword;
 
-    private List<String> errorPassword = new ArrayList<>();
+    private ArrayList<String> errorPassword = new ArrayList<>();
 
     public Boolean getCheckedPassword() {
         return checkedPassword;
@@ -20,7 +20,7 @@ public class PasswordResponse {
         this.checkedPassword = checkedPassword;
     }
 
-    public List<String> getErrorPassword() {
+    public ArrayList<String> getErrorPassword() {
         return errorPassword;
     }
 

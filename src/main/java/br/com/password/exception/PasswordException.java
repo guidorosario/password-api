@@ -5,7 +5,7 @@ public class PasswordException extends RuntimeException {
     private int httpStatus;
     private String error;
 
-    public PasswordException(String message, int httpStatus, String error) {
+    public PasswordException(int httpStatus, String message, String error) {
         super(message);
         this.httpStatus = httpStatus;
         this.error = error;
