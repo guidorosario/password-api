@@ -1,5 +1,7 @@
 package br.com.password.service.impl;
 
+import br.com.password.exception.PasswordException;
+import br.com.password.exception.PasswordValidatorException;
 import br.com.password.model.PasswordResponse;
 import br.com.password.model.request.PasswordRequest;
 import br.com.password.service.PasswordService;
@@ -38,6 +40,16 @@ public class PasswordServiceImpl implements PasswordService {
                 .doOnSuccess(passwordResponse -> LOG.info("Validacao de caractere especial finalizada"))
                 .flatMap(passwordResponse -> validatorService.repetitionCharacterValidator(request.password(), passwordResponse))
                 .doOnSuccess(passwordResponse -> LOG.info("Validacao de caractere repetido finalizada"))
-                .map(PasswordResponse::checkResponse);
+                .flatMap(this::checkResponse);
+    }
+
+    private Mono<PasswordResponse> checkResponse(PasswordResponse passwordResponse) {
+        if(!passwordResponse.getErrorPassword().isEmpty()) {
+            LOG.info("Senha não cumpriu os critérios de aceite");
+            return Mono.error(new PasswordValidatorException(passwordResponse.getErrorPassword().toString()));
+        } else {
+            passwordResponse.setCheckedPassword(true);
+        }
+        return Mono.just(passwordResponse);
     }
 }

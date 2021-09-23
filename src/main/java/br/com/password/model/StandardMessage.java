@@ -15,9 +15,6 @@ public class StandardMessage  implements Serializable {
         this.error = error;
         this.error_description = error_description;
     }
-    @Deprecated
-    public StandardMessage() {
-    }
 
     public String getError() {
         return error;
