@@ -24,10 +24,20 @@ public class PasswordServiceImpl implements PasswordService {
     @Override
     public Mono<PasswordResponse> validatorPassword(PasswordRequest request) {
 
-        return validatorService.lenghtValidator(request.password(), new PasswordResponse())
+        return validatorService.lengthValidator(request.password(), new PasswordResponse())
                 .doOnSuccess(passwordResponse -> LOG.info("Validacao de tamanho finalizada"))
                 .flatMap(passwordResponse ->  validatorService.spaceBetweenValidator(request.password(), passwordResponse))
                 .doOnSuccess(passwordResponse -> LOG.info("Validacao de espacos finalizada"))
-                .map(PasswordResponse::checkResponse) ;
+                .flatMap(passwordResponse -> validatorService.digitValidator(request.password(), passwordResponse))
+                .doOnSuccess(passwordResponse -> LOG.info("Validacao de digito finalizada"))
+                .flatMap(passwordResponse -> validatorService.lowerCaseValidator(request.password(), passwordResponse))
+                .doOnSuccess(passwordResponse -> LOG.info("Validacao de letra minuscula finalizada"))
+                .flatMap(passwordResponse -> validatorService.upperCaseValidator(request.password(), passwordResponse))
+                .doOnSuccess(passwordResponse -> LOG.info("Validacao de maiuscula finalizada"))
+                .flatMap(passwordResponse -> validatorService.specialCharacterValidator(request.password(), passwordResponse))
+                .doOnSuccess(passwordResponse -> LOG.info("Validacao de caractere especial finalizada"))
+                .flatMap(passwordResponse -> validatorService.repetitionCharacterValidator(request.password(), passwordResponse))
+                .doOnSuccess(passwordResponse -> LOG.info("Validacao de caractere repetido finalizada"))
+                .map(PasswordResponse::checkResponse);
     }
 }
