@@ -7,7 +7,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
-import static br.com.password.constrants.ValidatorConstrants.LENGTH;
+import static br.com.password.constraints.ValidatorConstraints.LENGTH;
+import static br.com.password.constraints.ValidatorConstraints.SPACE_BETWEEN;
 
 @Service
 public class ValidatorServiceImpl implements ValidatorService {
@@ -24,4 +25,16 @@ public class ValidatorServiceImpl implements ValidatorService {
 
         return Mono.just(passwordResponse);
     }
+
+    @Override
+    public Mono<PasswordResponse> spaceBetweenValidator(String password, PasswordResponse passwordResponse) {
+        if(password.matches(SPACE_BETWEEN)) {
+            LOG.info("Senha possui espaços");
+            passwordResponse.getErrorPassword().add("Senha não deve conter espaços");
+        }
+
+        return Mono.just(passwordResponse);
+    }
+
+
 }

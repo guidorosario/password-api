@@ -1,6 +1,6 @@
-package br.com.password.constrants;
+package br.com.password.constraints;
 
-public class ValidatorConstrants {
+public class ValidatorConstraints {
 
     public static final String SPACE_BETWEEN = "(?=.*\\s).*";
     public static final String DIGIT = "(?=.*\\d).*";

@@ -25,6 +25,9 @@ public class PasswordServiceImpl implements PasswordService {
     public Mono<PasswordResponse> validatorPassword(PasswordRequest request) {
 
         return validatorService.lenghtValidator(request.password(), new PasswordResponse())
-                .doOnSuccess(passwordResponse -> LOG.info("Validacao de tamanho finalizada, iniciando processo de validacao de espacos"))  ;
+                .doOnSuccess(passwordResponse -> LOG.info("Validacao de tamanho finalizada"))
+                .flatMap(passwordResponse ->  validatorService.spaceBetweenValidator(request.password(), passwordResponse))
+                .doOnSuccess(passwordResponse -> LOG.info("Validacao de espacos finalizada"))
+                .map(PasswordResponse::checkResponse) ;
     }
 }
