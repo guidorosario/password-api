@@ -16,7 +16,7 @@ API responsável por validar senhas
 O Spring Webflux é uma tecnologia que possibilita desenvolver aplicações web com Spring do lado servidor trabalhar de 
 forma reativa, sendo capaz de trabalhar com assincronia e melhorar o tempo de respostas das chamadas.
 
-###Descrição
+### Descrição
 Pensando no melhor entendimento do código foi utilizado o Spring Webflux, onde existe uma camada de serviço
 que realiza toda a lógica da aplicação, foi criado um serviço com todas as validações e uma validação não 
 na outra, no final caso tenha algum erro de validação da senha é retornado que precisa ser mudado
@@ -53,7 +53,7 @@ se uma senha válida.
 ./gradlew docker
 ````
 
-##Rodando a aplicação:
+## Rodando a aplicação:
 
 A aplicação irá subir na porta 8080
 
