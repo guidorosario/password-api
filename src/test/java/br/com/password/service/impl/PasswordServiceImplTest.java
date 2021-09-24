@@ -1,7 +1,6 @@
 package br.com.password.service.impl;
 
 import br.com.password.exception.PasswordValidatorException;
-import br.com.password.mock.MockPasswordResponse;
 import br.com.password.model.PasswordResponse;
 import br.com.password.model.request.PasswordRequest;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,14 +10,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import reactor.core.publisher.Mono;
-import br.com.password.mock.MockPasswordResponse.*;
 import reactor.test.StepVerifier;
 
-import static br.com.password.constraints.Messages.ERROR_LENGTH;
 import static br.com.password.constraints.Password.EMPTY_PASSWORD;
 import static br.com.password.constraints.Password.VALID_PASSWORD;
-import static br.com.password.mock.MockPasswordResponse.passwordResponseAllErrors;
-import static org.junit.jupiter.api.Assertions.*;
+import static br.com.password.mock.MockPasswordResponse.errorsLengthSpaceBetweenDigitLowerAndUpperCaseSpecialCharacter;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -40,7 +36,6 @@ class PasswordServiceImplTest {
     void validPasswordShouldPass() {
 
         var request = new PasswordRequest(VALID_PASSWORD);
-
 
         when(validatorService.lengthValidator(any(), any())).thenReturn(Mono.just(new PasswordResponse()));
 
@@ -78,7 +73,7 @@ class PasswordServiceImplTest {
 
         when(validatorService.specialCharacterValidator(any(), any())).thenReturn(Mono.just(new PasswordResponse()));
 
-        when(validatorService.repetitionCharacterValidator(any(), any())).thenReturn(Mono.just(passwordResponseAllErrors()));
+        when(validatorService.repetitionCharacterValidator(any(), any())).thenReturn(Mono.just(errorsLengthSpaceBetweenDigitLowerAndUpperCaseSpecialCharacter()));
 
         StepVerifier.create(passwordService.validatorPassword(request))
                 .expectSubscription()

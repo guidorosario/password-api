@@ -134,7 +134,6 @@ class ValidatorServiceImplTest {
                 .verify();
     }
 
-
     @Test
     @DisplayName("Testando senha sem caracteres especial")
     void noSpecialPasswordShouldAddErrorPassword() {
@@ -174,5 +173,4 @@ class ValidatorServiceImplTest {
                 .expectComplete()
                 .verify();
     }
-
 }
