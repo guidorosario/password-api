@@ -214,8 +214,4 @@ class PasswordControllerIntegrationTest {
                 .jsonPath("error_description").isEqualTo(exception.getMessage());
 
     }
-
-
-
-
 }
