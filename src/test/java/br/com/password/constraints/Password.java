@@ -8,7 +8,7 @@ public class Password {
 
     public static final String VALID_PASSWORD =  "1We3!XG$YC";
 
-    public static final String BETWEEN_PASSWORD = "1We3 !XG$YC";
+    public static final String SPACE_BETWEEN_PASSWORD = "1We3 !XG$YC";
 
     public static final String NO_UPPER_CASE_PASSWORD = "1we3!xc$yc";
 
